@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "browser-extension-builder": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/browser-extension-builder/SKILL.md",
+      "computedHash": "f18ce9618943d3c0d3c882525edbc0f356e46c1b1e50f0587bb906d5fbe7e51e"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "paper4eyes",
+  "version": "1.0.0",
+  "description": "Paper texture overlay browser extension for Firefox",
+  "private": true,
+  "scripts": {
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --watch --config jest.config.js",
+    "test:coverage": "jest --coverage --config jest.config.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.4.1"
+  }
+}

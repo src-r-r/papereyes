@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Paper4Eyes",
+  "version": "1.0.0",
+  "description": "Apply a subtle paper texture overlay to web pages for a more comfortable reading experience",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "scripts": ["src/background/background.js"],
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Paper4Eyes - Toggle Paper Texture",
+    "default_icon": {
+      "16": "src/icons/icon16.png",
+      "48": "src/icons/icon48.png",
+      "128": "src/icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "browser_style": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/content.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "src/icons/icon16.png",
+    "48": "src/icons/icon48.png",
+    "128": "src/icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{paper4eyes-extension-id}",
+      "strict_min_version": "109.0"
+    }
+  }
+}
