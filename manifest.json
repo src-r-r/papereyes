@@ -35,7 +35,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "{paper4eyes-extension-id}",
+      "id": "{3c317a51-f7c7-4d63-8778-882da8a1deab}",
       "strict_min_version": "109.0"
     }
   }
