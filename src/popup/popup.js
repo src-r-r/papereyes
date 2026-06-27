@@ -43,7 +43,7 @@ document.getElementById("toggle").addEventListener("change", async (e) => {
       action: "toggle",
       enabled,
       settings: result.settings || {},
-    });
+    }).catch(() => {});
   }
 
   document.getElementById("status").textContent = enabled

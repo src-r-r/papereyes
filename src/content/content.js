@@ -97,8 +97,12 @@ browser.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
     if (message.enabled) {
       if (!canvas) {
+        const currentOpacity = message.settings ? message.settings.opacity : settings.opacity;
+        const currentBlur = message.settings ? message.settings.blurRadius : settings.blurRadius;
         const newCanvas = createOverlayCanvas();
-        renderNoise(newCanvas, settings.opacity);
+        newCanvas.style.opacity = String(currentOpacity);
+        newCanvas.style.filter = `blur(${currentBlur}px)`;
+        renderNoise(newCanvas, currentOpacity);
         document.documentElement.appendChild(newCanvas);
       }
     } else {

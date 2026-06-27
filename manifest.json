@@ -3,9 +3,9 @@
   "name": "Paper4Eyes",
   "version": "1.0.0",
   "description": "Apply a subtle paper texture overlay to web pages for a more comfortable reading experience",
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab", "tabs", "<all_urls>"],
   "background": {
-    "service_worker": "src/background/background.js"
+    "scripts": ["src/background/background.js"]
   },
   "action": {
     "default_popup": "src/popup/popup.html",
