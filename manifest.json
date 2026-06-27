@@ -4,10 +4,8 @@
   "version": "1.0.0",
   "description": "Apply a subtle paper texture overlay to web pages for a more comfortable reading experience",
   "permissions": ["storage", "activeTab"],
-  "host_permissions": ["<all_urls>"],
   "background": {
-    "scripts": ["src/background/background.js"],
-    "type": "module"
+    "service_worker": "src/background/background.js"
   },
   "action": {
     "default_popup": "src/popup/popup.html",
