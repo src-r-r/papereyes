@@ -1,4 +1,3 @@
-/* global browser */
 
 browser.runtime.onInstalled.addListener(() => {
   browser.storage.local.get(["settings", "enabledDomains"]).then((result) => {
@@ -7,7 +6,7 @@ browser.runtime.onInstalled.addListener(() => {
       updates.settings = {
         opacity: 0.15,
         blurRadius: 1,
-        tileSize: 256,
+        mixMode: "multiply",
       };
     }
     if (!result.enabledDomains) {

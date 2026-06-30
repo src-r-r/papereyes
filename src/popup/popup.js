@@ -1,10 +1,10 @@
-/* global browser, document */
 
 const toggle = document.getElementById("toggle");
 const opacitySlider = document.getElementById("opacity");
 const opacityVal = document.getElementById("opacity-val");
 const blurSlider = document.getElementById("blur");
 const blurVal = document.getElementById("blur-val");
+const mixModeSelect = document.getElementById("mix-mode");
 const statusEl = document.getElementById("status");
 const controlsEl = document.getElementById("controls");
 
@@ -28,7 +28,7 @@ async function loadState() {
 
   const result = await browser.storage.local.get(["enabledDomains", "settings"]);
   const enabledDomains = result.enabledDomains || {};
-  const settings = result.settings || { opacity: 0.15, blurRadius: 1 };
+  const settings = result.settings || { opacity: 0.15, blurRadius: 1, mixMode: "multiply" };
   const isEnabled = enabledDomains[domain] === true;
 
   toggle.checked = isEnabled;
@@ -36,6 +36,7 @@ async function loadState() {
   opacityVal.textContent = `${opacitySlider.value}%`;
   blurSlider.value = settings.blurRadius;
   blurVal.textContent = `${settings.blurRadius}px`;
+  mixModeSelect.value = settings.mixMode || "multiply";
 
   updateUI(isEnabled);
 }
@@ -54,7 +55,7 @@ async function refreshActiveTab() {
   const tab = await getActiveTab();
   if (tab.id) {
     const result = await browser.storage.local.get(["settings"]);
-    const settings = result.settings || { opacity: 0.15, blurRadius: 1 };
+    const settings = result.settings || { opacity: 0.15, blurRadius: 1, mixMode: "multiply" };
     await browser.tabs.sendMessage(tab.id, {
       action: "refresh",
       settings,
@@ -64,6 +65,7 @@ async function refreshActiveTab() {
 
 toggle.addEventListener("change", async (e) => {
   const enabled = e.target.checked;
+  toggle.setAttribute("aria-checked", String(enabled));
   const tab = await getActiveTab();
   const domain = getDomain(tab.url);
 
@@ -85,20 +87,27 @@ toggle.addEventListener("change", async (e) => {
 
 opacitySlider.addEventListener("input", () => {
   opacityVal.textContent = `${opacitySlider.value}%`;
+  opacitySlider.setAttribute("aria-valuenow", opacitySlider.value);
   saveAndApplySettings();
 });
 
 blurSlider.addEventListener("input", () => {
   blurVal.textContent = `${blurSlider.value}px`;
+  blurSlider.setAttribute("aria-valuenow", blurSlider.value);
+  saveAndApplySettings();
+});
+
+mixModeSelect.addEventListener("change", () => {
   saveAndApplySettings();
 });
 
 async function saveAndApplySettings() {
   const opacity = parseInt(opacitySlider.value, 10) / 100;
   const blurRadius = parseFloat(blurSlider.value);
+  const mixMode = mixModeSelect.value;
 
   await browser.storage.local.set({
-    settings: { opacity, blurRadius },
+    settings: { opacity, blurRadius, mixMode },
   });
 
   await refreshActiveTab();

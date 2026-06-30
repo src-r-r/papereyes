@@ -1,15 +1,15 @@
-/* global browser, document */
 
 const opacitySlider = document.getElementById("opacity");
 const opacityValue = document.getElementById("opacity-value");
 const blurSlider = document.getElementById("blur");
 const blurValue = document.getElementById("blur-value");
+const mixModeSelect = document.getElementById("mix-mode");
 const domainList = document.getElementById("domain-list");
 const noDomains = document.getElementById("no-domains");
 
 async function loadSettings() {
   const result = await browser.storage.local.get(["settings", "enabledDomains"]);
-  const settings = result.settings || { opacity: 0.15, blurRadius: 1 };
+  const settings = result.settings || { opacity: 0.15, blurRadius: 1, mixMode: "multiply" };
   const enabledDomains = result.enabledDomains || {};
 
   opacitySlider.value = Math.round(settings.opacity * 100);
@@ -17,6 +17,8 @@ async function loadSettings() {
 
   blurSlider.value = settings.blurRadius;
   blurValue.textContent = `${settings.blurRadius}px`;
+
+  mixModeSelect.value = settings.mixMode || "multiply";
 
   renderDomains(enabledDomains);
 }
@@ -43,11 +45,16 @@ function renderDomains(enabledDomains) {
 
     const label = document.createElement("label");
     label.className = "switch";
+    label.setAttribute("role", "switch");
 
     const input = document.createElement("input");
     input.type = "checkbox";
     input.checked = enabledDomains[domain] === true;
-    input.addEventListener("change", () => toggleDomain(domain, input.checked));
+    input.setAttribute("role", "switch");
+    input.addEventListener("change", () => {
+      label.setAttribute("aria-checked", String(input.checked));
+      toggleDomain(domain, input.checked);
+    });
 
     const slider = document.createElement("span");
     slider.className = "slider";
@@ -84,9 +91,10 @@ async function toggleDomain(domain, enabled) {
 async function saveSettings() {
   const opacity = parseInt(opacitySlider.value, 10) / 100;
   const blurRadius = parseFloat(blurSlider.value);
+  const mixMode = mixModeSelect.value;
 
   await browser.storage.local.set({
-    settings: { opacity, blurRadius },
+    settings: { opacity, blurRadius, mixMode },
   });
 
   const tabs = await browser.tabs.query({});
@@ -95,7 +103,7 @@ async function saveSettings() {
       if (tab.id) {
         await browser.tabs.sendMessage(tab.id, {
           action: "refresh",
-          settings: { opacity, blurRadius },
+          settings: { opacity, blurRadius, mixMode },
         }).catch(() => {});
       }
     } catch {
@@ -106,11 +114,17 @@ async function saveSettings() {
 
 opacitySlider.addEventListener("input", () => {
   opacityValue.textContent = `${opacitySlider.value}%`;
+  opacitySlider.setAttribute("aria-valuenow", opacitySlider.value);
   saveSettings();
 });
 
 blurSlider.addEventListener("input", () => {
   blurValue.textContent = `${blurSlider.value}px`;
+  blurSlider.setAttribute("aria-valuenow", blurSlider.value);
+  saveSettings();
+});
+
+mixModeSelect.addEventListener("change", () => {
   saveSettings();
 });
 

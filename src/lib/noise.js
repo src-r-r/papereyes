@@ -46,8 +46,6 @@ function boxBlur(data, width, height, radius) {
   const output = new Uint8ClampedArray(data.length);
   const temp = new Uint8ClampedArray(data.length);
 
-  const size = radius * 2 + 1;
-
   for (let pass = 0; pass < 3; pass++) {
     const src = pass === 0 ? data : temp;
     const dst = pass < 2 ? temp : output;
@@ -130,4 +128,10 @@ function buildOverlayStyle({ opacity, blurRadius, pointerEvents = "none" }) {
   };
 }
 
-module.exports = { generateNoiseData, boxBlur, generateNoiseTile, getBlurFilter, buildOverlayStyle };
+// Node.js export (guarded: `module` doesn't exist in Firefox content scripts)
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { generateNoiseData, boxBlur, generateNoiseTile, getBlurFilter, buildOverlayStyle };
+}
+
+// Browser global (content scripts load this before content.js)
+window.NoiseUtils = { generateNoiseData, boxBlur, generateNoiseTile, getBlurFilter, buildOverlayStyle };
