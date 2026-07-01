@@ -2,7 +2,7 @@
 
 **Last updated: June 30, 2025**
 
-Paper4Eyes does not collect, store, or transmit any personal data.
+PaperEyes does not collect, store, or transmit any personal data.
 
 ## What data is stored
 

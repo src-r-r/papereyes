@@ -24,7 +24,7 @@ Settings are saved per-domain and persist across sessions.
 
 ## Privacy
 
-Paper4Eyes stores all data locally on your device. No data is ever sent to external servers. See the [full privacy policy](https://raw.githubusercontent.com/src-r-r/papereyes/main/privacy-policy.md) for details.
+PaperEyes stores all data locally on your device. No data is ever sent to external servers. See the [full privacy policy](https://raw.githubusercontent.com/src-r-r/papereyes/main/privacy-policy.md) for details.
 
 ## License
 

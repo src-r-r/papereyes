@@ -1,6 +1,6 @@
 
 
-const OVERLAY_ID = "paper4eyes-overlay";
+const OVERLAY_ID = "papereyes-overlay";
 const TILE_SIZE = 256;
 const MIX_MODES = ["multiply", "overlay", "soft-light", "screen", "color-dodge", "hard-light"];
 

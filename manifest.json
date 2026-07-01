@@ -12,7 +12,7 @@
   },
   "action": {
     "default_popup": "src/popup/popup.html",
-    "default_title": "Paper4Eyes - Toggle Paper Texture",
+    "default_title": "PaperEyes - Toggle Paper Texture",
     "default_icon": {
       "16": "src/icons/icon16.png",
       "48": "src/icons/icon48.png",
@@ -39,7 +39,12 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "{3c317a51-f7c7-4d63-8778-882da8a1deab}",
-      "strict_min_version": "109.0"
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "userFields": {},
+        "dataElements": [],
+        "processing Purposes": []
+      }
     }
   }
 }
