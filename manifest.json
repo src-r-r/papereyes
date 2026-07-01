@@ -8,7 +8,8 @@
   "permissions": ["storage", "activeTab", "tabs"],
   "host_permissions": ["<all_urls>"],
   "background": {
-    "scripts": ["src/background/background.js"]
+    "scripts": ["src/background/background.js"],
+    "service_worker": "src/background/background.js"
   },
   "action": {
     "default_popup": "src/popup/popup.html",
@@ -20,8 +21,7 @@
     }
   },
   "options_ui": {
-    "page": "src/options/options.html",
-    "browser_style": true
+    "page": "src/options/options.html"
   },
   "content_scripts": [
     {
@@ -39,17 +39,9 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "{3c317a51-f7c7-4d63-8778-882da8a1deab}",
-      "strict_min_version": "109.0",
+      "strict_min_version": "140.0",
       "data_collection_permissions": {
-        "required": ["userPreferences"],
-        "userFields": {},
-        "dataElements": [
-          {
-            "key": "userPreferences",
-            "description": "User preferences for paper texture settings stored locally"
-          }
-        ],
-        "processingPurposes": []
+        "required": ["none"]
       }
     }
   }
