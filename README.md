@@ -2,7 +2,9 @@
 
 A Firefox extension that applies a subtle paper texture overlay to web pages for a more comfortable reading experience.
 
-[![Mozilla Add-ons](https://img.shields.io/badge/Mozilla%20Add-ons-Paper4Eyes-blue)](https://addons.mozilla.org/firefox/addon/paper4eyes/)
+![Demo GIF](demo.gif)
+
+[![Mozilla Add-ons](https://img.shields.io/badge/Mozilla%20Add-ons-PaperEyes-blue)](https://addons.mozilla.org/firefox/addon/papereyes/)
 
 ## Features
 
