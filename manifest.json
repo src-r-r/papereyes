@@ -1,9 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Paper4Eyes",
+  "name": "PaperEyes",
   "version": "1.0.0",
   "description": "Apply a subtle paper texture overlay to web pages for a more comfortable reading experience",
-  "permissions": ["storage", "activeTab", "tabs", "<all_urls>"],
+  "author": "Jordan Hewitt <jordan@damngood.tech>",
+  "homepage_url": "https://github.com/src-r-r/papereyes",
+  "permissions": ["storage", "activeTab", "tabs"],
+  "host_permissions": ["<all_urls>"],
   "background": {
     "scripts": ["src/background/background.js"]
   },

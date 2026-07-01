@@ -1,58 +1,28 @@
-# Paper4Eyes
+# PaperEyes
 
-Firefox browser extension that applies a subtle paper texture overlay to web pages for a more comfortable reading experience.
+A Firefox extension that applies a subtle paper texture overlay to web pages for a more comfortable reading experience.
 
-## Installation
+[![Mozilla Add-ons](https://img.shields.io/badge/Mozilla%20Add-ons-Paper4Eyes-blue)](https://addons.mozilla.org/firefox/addon/paper4eyes/)
 
-1. Open Firefox and navigate to `about:debugging`
-2. Click **This Firefox** > **Load Temporary Add-on**
-3. Select any file in this project (e.g., `manifest.json`)
+## Features
 
-## Usage
+- Toggle paper texture on/off per domain
+- Adjustable **intensity** (noise opacity) and **grain size** (blur)
+- Six blend modes: Multiply, Overlay, Soft Light, Screen, Color Dodge, Hard Light
+- Zero data collection — all settings stay on your device
 
-- Click the extension icon to open the popup
-- Toggle the paper texture on/off for the current domain
-- Adjust **Intensity** (noise opacity) and **Grain Size** (blur radius)
-- Choose a **Blend Mode** to change how the texture interacts with page colors:
-  - **Multiply** - works on both light and dark backgrounds
-  - **Overlay** - enhances contrast
-  - **Soft Light** - gentle, natural paper feel
-  - **Screen** - brightens, good for dark pages
-  - **Color Dodge** - strong brightening effect
-  - **Hard Light** - bold, high-contrast blend
+## Getting Started
 
-## Development
+1. Install from [Mozilla Add-ons](https://addons.mozilla.org/firefox/addon/papereyes/)
+2. Click the extension icon to open the popup
+3. Toggle the texture on for the current page
+4. Adjust intensity, grain, and blend mode to your liking
 
-```bash
-npm install
-npm test           # Run unit tests
-npm run lint       # Check code style
-npm run lint:fix   # Auto-fix code style
-npm run format     # Format with Prettier
-```
+Settings are saved per-domain and persist across sessions.
 
-## Project Structure
+## Privacy
 
-```
-paper4eyes/
-├── manifest.json              # WebExtensions Manifest V3
-├── src/
-│   ├── background/
-│   │   └── background.js      # Seed default settings on install
-│   ├── content/
-│   │   └── content.js         # Inject overlay canvas into pages
-│   ├── popup/
-│   │   ├── popup.html         # Extension popup UI
-│   │   └── popup.js           # Popup controller
-│   ├── options/
-│   │   ├── options.html       # Settings page
-│   │   └── options.js         # Options page controller
-│   ├── lib/
-│   │   └── noise.js           # Pure noise generation utilities (UMD)
-│   └── icons/
-└── tests/
-    └── noise.test.js          # Unit tests for noise.js
-```
+Paper4Eyes stores all data locally on your device. No data is ever sent to external servers. See the [full privacy policy](https://raw.githubusercontent.com/src-r-r/papereyes/main/privacy-policy.md) for details.
 
 ## License
 
